@@ -1,9 +1,12 @@
 package com.costular.marvelheroes.presentation.heroedetail
 
 import android.graphics.drawable.Drawable
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -24,7 +27,6 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_hero_detail)
         setContentView(R.layout.activity_hero_detail)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
@@ -34,6 +36,14 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
 
         val hero: MarvelHeroEntity? = intent?.extras?.getParcelable(PARAM_HEROE)
         hero?.let { fillHeroData(it) }
+
+        setUpStarListeners()
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.heroe_detail, menu)
+        return true
     }
 
     private fun fillHeroData(hero: MarvelHeroEntity) {
@@ -65,8 +75,38 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
                 onBackPressed()
                 true
             }
+
+            R.id.starHeroe -> {
+                val newVisibility = noStarImage.visibility
+                noStarImage.visibility = starImage.visibility
+                starImage.visibility = newVisibility
+                return true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setUpStarListeners() {
+
+        // swap starImage visibility when tapped
+        // as an alternative to menu option
+        starImage.setOnClickListener {
+            val newVisibility = noStarImage.visibility
+            noStarImage.visibility = starImage.visibility
+            starImage.visibility = newVisibility
+            // TODO: persist status
+        }
+
+        // swap noStarImage visibility when tapped
+        // as an alternative to menu option
+        noStarImage.setOnClickListener {
+            val newVisibility = starImage.visibility
+            starImage.visibility = noStarImage.visibility
+            noStarImage.visibility = newVisibility
+            // TODO: persist status
+        }
+
     }
 
 }
