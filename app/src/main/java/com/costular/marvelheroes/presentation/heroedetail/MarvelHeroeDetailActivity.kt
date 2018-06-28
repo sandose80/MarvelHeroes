@@ -3,7 +3,6 @@ package com.costular.marvelheroes.presentation.heroedetail
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.app.AppCompatDelegate
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -25,6 +24,7 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_hero_detail)
         setContentView(R.layout.activity_hero_detail)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
