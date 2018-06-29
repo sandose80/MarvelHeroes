@@ -1,5 +1,6 @@
 package com.costular.marvelheroes.presentation.heroedetail
 
+import android.app.Activity
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -23,8 +24,6 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
         const val PARAM_HEROE = "heroe"
     }
 
-    var hero: MarvelHeroEntity? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hero_detail)
@@ -34,8 +33,7 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
         }
         supportPostponeEnterTransition() // Wait for image load and then draw the animation
 
-//        val hero: MarvelHeroEntity? = intent?.extras?.getParcelable(PARAM_HEROE)
-        hero = intent?.extras?.getParcelable(PARAM_HEROE)
+        val hero: MarvelHeroEntity? = intent?.extras?.getParcelable(PARAM_HEROE)
         hero?.let { fillHeroData(it) }
 
         setUpStarListeners()
