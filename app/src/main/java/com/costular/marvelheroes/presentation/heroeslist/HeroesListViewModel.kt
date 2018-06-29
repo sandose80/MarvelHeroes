@@ -8,7 +8,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
 /**
  * Created by jerosanchez on 29/6/2018

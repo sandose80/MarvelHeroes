@@ -43,7 +43,7 @@ abstract class ViewModelModule {
     @ViewModelKey(HeroesListViewModel::class)
     internal abstract fun postHeroesListViewModel(viewModel: HeroesListViewModel): ViewModel
 
-    // Add more ViewModels here as needed...
+    // add more ViewModels here as required...
 
 //    @Binds
 //    @IntoMap

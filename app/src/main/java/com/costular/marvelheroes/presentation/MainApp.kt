@@ -21,6 +21,7 @@ class MainApp : Application() {
         super.onCreate()
 
         // make some stuff available via an Injector service locator
+        // still not able to make Dagger to inject dependencies into ViewModels...
 
         Injector.heroesRepository = component.getRepository()
     }
