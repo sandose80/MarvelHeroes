@@ -4,7 +4,7 @@ import com.costular.marvelheroes.data.repository.MarvelHeroesRepositoryImpl
 import com.costular.marvelheroes.di.scopes.PerActivity
 import com.costular.marvelheroes.domain.usecase.GetMarvelHeroesList
 import com.costular.marvelheroes.presentation.heroeslist.HeroesListActivity
-import com.costular.marvelheroes.presentation.heroeslist.HeroesListContract
+//import com.costular.marvelheroes.presentation.heroeslist.HeroesListContract
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,9 +15,9 @@ import javax.inject.Singleton
 @Module
 class GetMarvelHeroesListModule(private val view: HeroesListActivity) {
 
-    @Provides
-    @PerActivity
-    fun provideView(): HeroesListContract.View = view
+//    @Provides
+//    @PerActivity
+//    fun provideView(): HeroesListContract.View = view
 
     @Provides
     @PerActivity

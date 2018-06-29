@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
  * Created by jerosanchez on 29/6/2018
  */
 
-// A trick to allow Dagger inject dependencies into ViewModel objects
+// a trick to allow Dagger to inject dependencies into ViewModel objects
 
 @Singleton
 class ViewModelFactory @Inject constructor(

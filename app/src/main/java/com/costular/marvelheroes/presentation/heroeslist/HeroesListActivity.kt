@@ -1,5 +1,6 @@
 package com.costular.marvelheroes.presentation.heroeslist
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -13,23 +14,35 @@ import com.costular.marvelheroes.di.components.DaggerGetMarvelHeroesListComponen
 import com.costular.marvelheroes.di.modules.GetMarvelHeroesListModule
 import com.costular.marvelheroes.domain.model.MarvelHeroEntity
 import com.costular.marvelheroes.presentation.MainApp
+import com.costular.marvelheroes.presentation.servicelocator.Injector
 import com.costular.marvelheroes.presentation.util.Navigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class HeroesListActivity: AppCompatActivity(), HeroesListContract.View {
+class HeroesListActivity: AppCompatActivity()
+    // not needed any longer once we have moved to MVVM
+//        , HeroesListContract.View
+{
 
     @Inject
     lateinit var navigator: Navigator
 
-    @Inject
-    lateinit var presenter: HeroesListPresenter
+    // ----------
+    // not needed any longer once we have moved to MVVM
 
-    // I was unable to make it work... ´(
-    // get error: android.arch.lifecycle.View Model Provider.Factory cannot be provided without an @Provides
+//    @Inject
+//    lateinit var presenter: HeroesListPresenter
+
+    // ----------
+    // unable to make ModelView injections work... ´(
+    // got the following error:
+    // android.arch.lifecycle.View Model Provider.Factory cannot be provided without an @Provides
 
 //    @Inject
 //    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    // using an Injector service locator instead... meanwhile
+    val heroesListViewModel = HeroesListViewModel(Injector.heroesRepository)
 
     lateinit var adapter: HeroesListAdapter
 
@@ -50,11 +63,53 @@ class HeroesListActivity: AppCompatActivity(), HeroesListContract.View {
 
     private fun setUp() {
         setUpRecycler()
-        presenter.loadMarvelHeroes()
+
+        // MVP (older version)
+//        presenter.loadMarvelHeroes()
+
+        // MVVM, using MovelView
+        bindEvents()
+    }
+
+    private fun bindEvents() {
+
+        // changes in loading indicator state
+        // we expect two possible values:
+        // 1. true, before starting loading heroes list
+        // 2. false, when heroes list is loaded
+        heroesListViewModel
+                .isLoadingIndicatorState
+                .observe(this, Observer { isLoading ->
+                    isLoading?.let {
+                        showLoading(isLoading)
+                    }
+                })
+
+        // changes in heroes list state
+        // we expect only one event:
+        // a new heroes list is ready to load in the recycler view
+        heroesListViewModel
+                .heroesListState
+                .observe(this, Observer { heroesList ->
+                    heroesList?.let {
+                        showHeroesList(heroesList)
+                    }
+                })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // get the ball rolling...
+        // load heroes list whenever the view gets the focus
+        heroesListViewModel.loadHeroesList()
     }
 
     private fun setUpRecycler() {
-        adapter = HeroesListAdapter { hero, image -> goToHeroDetail(hero, image) }
+        adapter = HeroesListAdapter { hero, image ->
+            goToHeroDetail(hero, image)
+        }
         heroesListRecycler.layoutManager = GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
         heroesListRecycler.itemAnimator = DefaultItemAnimator()
         heroesListRecycler.adapter = adapter
@@ -64,25 +119,34 @@ class HeroesListActivity: AppCompatActivity(), HeroesListContract.View {
         navigator.goToHeroDetail(this, hero, image)
     }
 
-    override fun showLoading(isLoading: Boolean) {
+    // ----------
+    // recycling  methods from MVP View contract:
+
+//    override fun showLoading(isLoading: Boolean) {
+    fun showLoading(isLoading: Boolean) {
         heroesListLoading.visibility = if(isLoading) View.VISIBLE else View.GONE
     }
 
-    override fun showHeroesList(heroes: List<MarvelHeroEntity>) {
+//    override fun showHeroesList(heroes: List<MarvelHeroEntity>) {
+    fun showHeroesList(heroes: List<MarvelHeroEntity>) {
         adapter.swapData(heroes)
     }
 
-    override fun onDestroy() {
-        presenter.destroy()
-        super.onDestroy()
-    }
 
-    override fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
+    // ----------
+    // not needed any longer once we have moved to MVVM
 
-    override fun showError(messageRes: Int) {
-        Toast.makeText(this, messageRes, Toast.LENGTH_LONG).show()
-    }
+//    override fun onDestroy() {
+//        presenter.destroy()
+//        super.onDestroy()
+//    }
+
+//    override fun showError(message: String) {
+//        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+//    }
+
+//    override fun showError(messageRes: Int) {
+//        Toast.makeText(this, messageRes, Toast.LENGTH_LONG).show()
+//    }
 
 }
