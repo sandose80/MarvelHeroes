@@ -37,7 +37,7 @@ class HeroesListViewModel @Inject constructor(
                 // process "events" from the repository
                 .subscribeBy(
                     onNext = { listOfHeroesEntities ->
-                        // change heroes list state, thus giving chance
+                        // change heroes list state, giving chance
                         // who is observing to do its stuff
                         heroesListState.value = listOfHeroesEntities
                     },

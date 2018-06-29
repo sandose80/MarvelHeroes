@@ -1,5 +1,6 @@
 package com.costular.marvelheroes.presentation.heroeslist
 
+import android.arch.lifecycle.ViewModelProvider
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
@@ -7,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import android.widget.Toast
 import com.costular.marvelheroes.R
+import com.costular.marvelheroes.R.id.heroesListRecycler
 import com.costular.marvelheroes.di.components.DaggerGetMarvelHeroesListComponent
 import com.costular.marvelheroes.di.modules.GetMarvelHeroesListModule
 import com.costular.marvelheroes.domain.model.MarvelHeroEntity
@@ -15,13 +17,19 @@ import com.costular.marvelheroes.presentation.util.Navigator
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class HeroesListActivity : AppCompatActivity(), HeroesListContract.View {
+class HeroesListActivity: AppCompatActivity(), HeroesListContract.View {
 
     @Inject
     lateinit var navigator: Navigator
 
     @Inject
     lateinit var presenter: HeroesListPresenter
+
+    // I was unable to make it work... ´(
+    // get error: android.arch.lifecycle.View Model Provider.Factory cannot be provided without an @Provides
+
+//    @Inject
+//    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     lateinit var adapter: HeroesListAdapter
 
