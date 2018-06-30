@@ -17,9 +17,11 @@ class MarvelHeroesRepositoryImpl(
 ) : MarvelHeroesRepository {
 
     override fun getMarvelHeroesList(): Observable<List<MarvelHeroEntity>> =
+        // first, return cached heroes list from our local database
         getMarvelHeroesFromDb()
+                // then, as a second observed value,
+                // return the newest list available from the API
                 .concatWith(getMarvelHeroesFromApi())
-
 
     private fun getMarvelHeroesFromDb(): Observable<List<MarvelHeroEntity>> =
         localMarvelHeroesDataSource
@@ -31,11 +33,13 @@ class MarvelHeroesRepositoryImpl(
     private fun getMarvelHeroesFromApi(): Observable<List<MarvelHeroEntity>> =
         remoteMarvelHeroesDataSource
                 .getMarvelHeroesList()
-                .doOnNext { heroesList ->
-                    // TODO: implement saving heroes in local db
-                }
                 .map { heroesList ->
                     marvelHeroesMapper.transformList(heroesList)
+                }
+                .doOnNext { heroesList ->
+                    // cache latest data from the API into our local database,
+                    // so we can deliver it quickly next time
+                    localMarvelHeroesDataSource.refreshCacheFrom(heroesList)
                 }
 
 }

@@ -2,6 +2,7 @@ package com.costular.marvelheroes.data.repository.datasource
 
 import com.costular.marvelheroes.data.db.MarvelHeroesDatabase
 import com.costular.marvelheroes.data.model.MarvelHero
+import com.costular.marvelheroes.domain.model.MarvelHeroEntity
 import io.reactivex.Observable
 
 /**
@@ -9,7 +10,7 @@ import io.reactivex.Observable
  */
 
 class LocalMarvelHeroesDataSource(
-        val marvelHeroesDatabase: MarvelHeroesDatabase
+        private val marvelHeroesDatabase: MarvelHeroesDatabase
 ): MarvelHeroesDataSource {
 
     override fun getMarvelHeroesList(): Observable<List<MarvelHero>> =
@@ -18,4 +19,9 @@ class LocalMarvelHeroesDataSource(
                 .getAll()
                 .toObservable()
 
+    fun refreshCacheFrom(heroesList: List<MarvelHeroEntity>) {
+        marvelHeroesDatabase
+                .getMarvelHeroesDao()
+                .update(heroesList)
+    }
 }

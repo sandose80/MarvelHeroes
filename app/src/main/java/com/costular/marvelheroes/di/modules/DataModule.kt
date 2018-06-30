@@ -21,25 +21,32 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideMarvelHeroMapper(): MarvelHeroMapper = MarvelHeroMapper()
+    fun provideMarvelHeroMapper(
+            // no dependency
+    ): MarvelHeroMapper =
+            MarvelHeroMapper()
 
     @Provides
     @Singleton
-    fun provideRemoteMarvelHeroesDataSoruce(marvelHeroesService: MarvelHeroesService)
-            : RemoteMarvelHeroesDataSource =
-                RemoteMarvelHeroesDataSource(marvelHeroesService)
+    fun provideRemoteMarvelHeroesDataSource(
+            marvelHeroesService: MarvelHeroesService
+    ): RemoteMarvelHeroesDataSource =
+            RemoteMarvelHeroesDataSource(marvelHeroesService)
 
     @Provides
     @Singleton
-    fun provideMarvelHeroeDatabase(context: Context): MarvelHeroesDatabase =
+    fun provideMarvelHeroesDatabase(
+            context: Context
+    ): MarvelHeroesDatabase =
             Room.databaseBuilder(context, MarvelHeroesDatabase::class.java, BuildConfig.DB_NAME)
                     .build()
 
     @Provides
     @Singleton
-    fun provideLocalMarvelHeroesDataSource(marvelHeroesDatabase: MarvelHeroesDatabase)
-            : LocalMarvelHeroesDataSource =
-                LocalMarvelHeroesDataSource(marvelHeroesDatabase)
+    fun provideLocalMarvelHeroesDataSource(
+            marvelHeroesDatabase: MarvelHeroesDatabase
+    ): LocalMarvelHeroesDataSource =
+            LocalMarvelHeroesDataSource(marvelHeroesDatabase)
 
     @Provides
     @Singleton
