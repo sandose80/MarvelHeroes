@@ -54,12 +54,10 @@ class HeroesListViewModel (
                     },
                     onComplete = {
                         // nothing to do
-                        val debug = true
                         },
                     onError = {
                         // nothing to do
                         // defined just in case, so the app doesn't crash
-                        val debug = true
                     }
                 )
 

@@ -17,6 +17,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "API_URL", "\"https://api.myjson.com/bins/bvyob/\""
+        buildConfigField "String", "DB_NAME", "\"marvel_heroes\""
 
         androidExtensions {
             experimental = true
@@ -64,4 +65,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.1'
     
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    def room_version = "1.1.1"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
+    implementation "android.arch.persistence.room:rxjava2:$room_version"
+
+    def stetho_version = "1.5.0"
+    implementation "com.facebook.stetho:stetho:$stetho_version"
 }

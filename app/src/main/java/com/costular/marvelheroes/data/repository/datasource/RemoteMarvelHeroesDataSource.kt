@@ -7,10 +7,13 @@ import io.reactivex.Observable
 /**
  * Created by costular on 17/03/2018.
  */
-class RemoteMarvelHeroesDataSource(private val marvelHeroesService: MarvelHeroesService):
-        MarvelHeroesDataSource {
+class RemoteMarvelHeroesDataSource(
+        private val marvelHeroesService: MarvelHeroesService
+): MarvelHeroesDataSource {
 
     override fun getMarvelHeroesList(): Observable<List<MarvelHero>> =
-            marvelHeroesService.getMarvelHeroesList().map { it.superheroes }
+            marvelHeroesService
+                    .getMarvelHeroesList()
+                    .map { it.superheroes }
 
 }

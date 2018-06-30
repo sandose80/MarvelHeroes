@@ -87,13 +87,14 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
 
     private fun setUpStarListeners() {
 
+        // TODO: persist star visibility status
+
         // swap starImage visibility when tapped
         // as an alternative to menu option
         starImage.setOnClickListener {
             val newVisibility = noStarImage.visibility
             noStarImage.visibility = starImage.visibility
             starImage.visibility = newVisibility
-            // TODO: persist status
         }
 
         // swap noStarImage visibility when tapped
@@ -102,7 +103,6 @@ class MarvelHeroeDetailActivity : AppCompatActivity() {
             val newVisibility = starImage.visibility
             starImage.visibility = noStarImage.visibility
             noStarImage.visibility = newVisibility
-            // TODO: persist status
         }
 
     }
