@@ -1,10 +1,25 @@
 # Marvel Heroes 💪🏻
 
+## Mejoras realizadas:
+
 Marvel Heroes es una app para Android que lista algunos de los súperheroes de Marvel con sus características.
+
+Notas sobre la versión modificada:
+
+- Refactorización para usar MVVM Clean con ViewModel y LiveData de JetPack.
+
+- Persistencia de los datos de la API en una caché usando Room.
+
+- Implementación de un sistema básico para marcar héroes como favoritos. La marca de favorito se persiste localmente en Room mediante una entidad para atributos extendidos que no proporciona la API. Se puede utilizar a nivel de la vista de detalle, tocando la estrella y, como alternativa, por medio de una opción de menú.
+
+- No he sido capaz de hacer funcionar Dagger2 para inyectar dependencias en ViewModel. En su lugar, de momento utilizo una clase Injector como _service locator_ para inyectar el repositorio.
+
+- Dejo pendiente mostrar la marca de favorito también en la lista de héroes.
+
 
  Main                      |  Detail
 :-------------------------:|:-------------------------:
-![main](https://raw.githubusercontent.com/costular/marvel-super-heroes/master/art/main.png) | ![detail](https://raw.githubusercontent.com/costular/marvel-super-heroes/master/art/detail.png)
+![main](https://raw.githubusercontent.com/jerosanchez/MarvelHeroes/master/art/main.png) | ![detail](https://raw.githubusercontent.com/jerosanchez/MarvelHeroes/master/art/detail.png)
 
 ## Características ✨
 
