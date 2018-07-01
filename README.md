@@ -1,8 +1,8 @@
 # Marvel Heroes 💪🏻
 
-## Mejoras realizadas:
-
 Marvel Heroes es una app para Android que lista algunos de los súperheroes de Marvel con sus características.
+
+## Mejoras realizadas:
 
 Notas sobre la versión modificada:
 
