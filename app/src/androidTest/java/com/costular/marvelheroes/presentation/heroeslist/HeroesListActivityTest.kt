@@ -12,7 +12,7 @@ import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import com.costular.marvelheroes.R
-import com.costular.marvelheroes.presentation.heroedetail.MarvelHeroeDetailActivity
+import com.costular.marvelheroes.presentation.heroedetail.HeroDetailActivity
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -43,7 +43,7 @@ class HeroesListActivityTest {
         onView(withId(R.id.heroesListRecycler))
                 .perform(RecyclerViewActions.actionOnItemAtPosition<HeroesListAdapter.HeroesViewHolder>(0, click()))
 
-        intended(hasComponent(MarvelHeroeDetailActivity::class.java.name))
+        intended(hasComponent(HeroDetailActivity::class.java.name))
 
         Intents.release()
     }

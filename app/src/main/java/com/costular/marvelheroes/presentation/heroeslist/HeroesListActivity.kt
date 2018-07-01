@@ -21,6 +21,8 @@ class HeroesListActivity: AppCompatActivity() {
     @Inject
     lateinit var navigator: Navigator
 
+    // TODO: make Dagger work with heroes list ViewModel
+
     // unable to make ModelView injections work... ´(
     // got the following error:
     // android.arch.lifecycle.View Model Provider.Factory cannot be provided without an @Provides
@@ -29,9 +31,9 @@ class HeroesListActivity: AppCompatActivity() {
 //    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     // using an Injector service locator instead... meanwhile
-    val heroesListViewModel = HeroesListViewModel(Injector.heroesRepository)
+    private val heroesListViewModel = HeroesListViewModel(Injector.heroesRepository)
 
-    lateinit var adapter: HeroesListAdapter
+    private lateinit var adapter: HeroesListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()

@@ -42,4 +42,25 @@ class MarvelHeroesRepositoryImpl(
                     localMarvelHeroesDataSource.refreshCacheFrom(heroesList)
                 }
 
+    // things that only happen locally;
+    // delegate operations to the data source
+
+    override fun starHero(marvelHeroe: MarvelHeroEntity) =
+        localMarvelHeroesDataSource
+                .setFavorite(marvelHeroe, true)
+
+    override fun unstarHero(marvelHeroe: MarvelHeroEntity) =
+        localMarvelHeroesDataSource
+                .setFavorite(marvelHeroe, false)
+
+    override fun getHeroFavoriteStatus(marvelHeroe: MarvelHeroEntity): Observable<Boolean> =
+        localMarvelHeroesDataSource
+                .isFavorite(marvelHeroe)
+
+                // if there's no favorite mark locally stored yet
+                // return false, i.e. hero is not a favorite
+                .switchIfEmpty {
+                    Observable.just(false)
+                }
+
 }

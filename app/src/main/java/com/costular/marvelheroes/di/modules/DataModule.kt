@@ -39,7 +39,13 @@ class DataModule {
             context: Context
     ): MarvelHeroesDatabase =
             Room.databaseBuilder(context, MarvelHeroesDatabase::class.java, BuildConfig.DB_NAME)
+
+                    // yes, I know, this SHOULD NOT BE USED in production
+                    // TODO: refactor to do all database operations in background
+                    .allowMainThreadQueries()
+
                     .build()
+
 
     @Provides
     @Singleton

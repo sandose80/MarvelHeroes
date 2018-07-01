@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/starHeroe"
+        android:id="@+id/starHero"
         android:title="Star/Unstar heroe" />
 
 </menu>

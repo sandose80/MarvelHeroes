@@ -14,8 +14,10 @@ import io.reactivex.schedulers.Schedulers
  */
 
 class HeroesListViewModel (
-        val heroesRepository: MarvelHeroesRepositoryImpl
+        private val heroesRepository: MarvelHeroesRepositoryImpl
 ): BaseViewModel() {
+
+    // --- outbound (model to view)
 
     val heroesListState: MutableLiveData<List<MarvelHeroEntity>> = MutableLiveData()
 
@@ -64,4 +66,8 @@ class HeroesListViewModel (
                 // do not forget to clean up when finished
                 .addTo(compositeDisposable)
     }
+
+    // --- outbound (model to view)
+
+    // nothing yet...
 }
