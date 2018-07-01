@@ -11,6 +11,10 @@ import org.jetbrains.annotations.NotNull
  * Created by jerosanchez on 1/7/2018
  */
 
+// local part of the Hero entity to handle
+// extended attributes not belonging to the API,
+// i.e. favorite status
+
 @Entity(tableName = "heroes_attr")
 @SuppressLint("ParcelCreator")
 @Parcelize

@@ -21,6 +21,8 @@ class HeroesListActivity: AppCompatActivity() {
     @Inject
     lateinit var navigator: Navigator
 
+    // TODO: display favorite status in heroes list
+
     // TODO: make Dagger work with heroes list ViewModel
 
     // unable to make ModelView injections work... ´(
