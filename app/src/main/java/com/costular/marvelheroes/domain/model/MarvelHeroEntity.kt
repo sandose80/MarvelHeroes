@@ -16,18 +16,20 @@ import org.jetbrains.annotations.NotNull
 @SuppressLint("ParcelCreator")
 @Parcelize
 data class MarvelHeroEntity(
+
+        // using hero's name as id because we need to relate
+        // API's data to extended attributes stored locally in a separate table;
+        // not very elegant, but the best solution since the API has no id
+
         @NotNull
         @PrimaryKey
         val name: String,
+
         val photoUrl: String,
         val realName: String ,
         val height: String,
         val power: String,
-        val abilities: String
-
-        // TODO: use @TypeConverters to handle Array<String>
-        // https://thetechguru.in/storing-java-objects-primitive-types-room-database/
-
-//        val groups: Array<String>
+        val abilities: String,
+        val groups: Array<String>
 
 ) : Parcelable

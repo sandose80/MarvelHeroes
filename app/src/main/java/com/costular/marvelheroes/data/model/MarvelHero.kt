@@ -1,6 +1,5 @@
 package com.costular.marvelheroes.data.model
 
-import android.arch.persistence.room.Entity
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -14,6 +13,6 @@ data class MarvelHero(
         val realName: String,
         val height: String,
         val power: String,
-        val abilities: String
-//        val groups: String
+        val abilities: String,
+        val groups: String
 )

@@ -23,20 +23,20 @@ abstract class MarvelHeroesDao() {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun update(heroesList: List<MarvelHeroEntity>)
 
-    // check if we already have extended
-    // local attributes created for this hero
+    // check if we already have extended attributes
+    // stored locally for an hero
     @Query("SELECT * FROM heroes_attr WHERE id = :id LIMIT 1")
     abstract fun findAttrsById(id: String): MarvelHeroAttrEntity?
 
-    // insert extended local attributes
+    // add extended local attributes for a hero
     @Insert
     abstract fun insertLocalAttr(extendedAttrs: MarvelHeroAttrEntity)
 
-    // update extended local attributes
+    // update extended local attributes for a hero
     @Update(onConflict = OnConflictStrategy.REPLACE)
     abstract fun updateLocalAttr(extendedAttrs: MarvelHeroAttrEntity)
 
-    // get favorite mark for an hero;
+    // check favorite mark for a hero
     @Query("SELECT favorite FROM heroes_attr WHERE id = :id LIMIT 1")
     abstract fun isFavorite(id: String): Maybe<Boolean>
 

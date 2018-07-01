@@ -22,7 +22,7 @@ class MainApp : Application() {
         super.onCreate()
 
         // start debug bridge for Chrome Developer Tools
-        // browse to the following URL to use: chrome://inspect
+        // browse to this URL to start: chrome://inspect
 
         Stetho.initializeWithDefaults(this)
 

@@ -45,17 +45,17 @@ class MarvelHeroesRepositoryImpl(
     // things that only happen locally;
     // delegate operations to the data source
 
-    override fun starHero(marvelHeroe: MarvelHeroEntity) =
+    override fun starHero(hero: MarvelHeroEntity) =
         localMarvelHeroesDataSource
-                .setFavorite(marvelHeroe, true)
+                .setFavorite(hero, true)
 
-    override fun unstarHero(marvelHeroe: MarvelHeroEntity) =
+    override fun unstarHero(hero: MarvelHeroEntity) =
         localMarvelHeroesDataSource
-                .setFavorite(marvelHeroe, false)
+                .setFavorite(hero, false)
 
-    override fun getHeroFavoriteStatus(marvelHeroe: MarvelHeroEntity): Observable<Boolean> =
+    override fun getHeroFavoriteStatus(hero: MarvelHeroEntity): Observable<Boolean> =
         localMarvelHeroesDataSource
-                .isFavorite(marvelHeroe)
+                .isFavorite(hero)
 
                 // if there's no favorite mark locally stored yet
                 // return false, i.e. hero is not a favorite

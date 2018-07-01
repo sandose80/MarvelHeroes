@@ -17,6 +17,6 @@ import org.jetbrains.annotations.NotNull
 data class MarvelHeroAttrEntity(
         @NotNull
         @PrimaryKey
-        val id: String, // <<< using hero's name as the id... :-/
+        val id: String,
         val favorite: Boolean
 ) : Parcelable

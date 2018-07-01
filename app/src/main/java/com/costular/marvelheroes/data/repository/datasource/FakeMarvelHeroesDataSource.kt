@@ -17,14 +17,18 @@ class FakeMarvelHeroesDataSource : MarvelHeroesDataSource {
                                 "",
                                 "",
                                 "",
-                                ""),
+                                "",
+                                ""
+                        ),
                         MarvelHero(
                                 "Fake 2",
                                 "https://thefreakchoice.com/2833-home_default/cojin-arrow-flechas-verde-.jpg",
                                 "",
                                 "",
                                 "",
-                                "")
+                                "",
+                                ""
+                        )
                 )
         )
     }
